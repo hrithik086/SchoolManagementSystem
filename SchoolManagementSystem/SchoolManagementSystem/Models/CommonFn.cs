@@ -24,22 +24,22 @@ namespace SchoolManagementSystem.Models
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
-        }
 
-        public DataTable Fetch(string query)
-        {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["SchoolCS"].ConnectionString);
-            
-            if(con.State == ConnectionState.Closed)
+            public DataTable Fetch(string query)
             {
-                con.Open();
-            }
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["SchoolCS"].ConnectionString);
 
-            SqlCommand cmd = new SqlCommand(query, con);
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            return dt;
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                return dt;
+            }
         }
     }
 }
